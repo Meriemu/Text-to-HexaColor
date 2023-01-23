@@ -13,6 +13,7 @@ export default function Home() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`
         },
         body: JSON.stringify({ animal: animalInput }),
       });
@@ -22,7 +23,7 @@ export default function Home() {
         throw data.error || new Error(`Request failed with status ${response.status}`);
       }
 
-      setResult(data.result);
+      setResult('#'+data.result);
       setAnimalInput("");
     } catch(error) {
       // Consider implementing your own error handling logic here
